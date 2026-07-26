@@ -1,0 +1,17 @@
+# Sistema
+.DS_Store
+Thumbs.db
+
+# Obsidian: configuración local, no forma parte del wiki
+.obsidian/workspace*
+.obsidian/cache
+
+# Binarios de audio/vídeo: este repo no incluye material fuente (raw/ vive en un
+# repositorio de trabajo privado aparte). Regla de higiene por si algo se cuela.
+*.mp3
+*.wav
+*.m4a
+*.mp4
+*.mkv
+*.mov
+*.avi
