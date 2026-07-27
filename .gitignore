@@ -2,6 +2,10 @@
 .DS_Store
 Thumbs.db
 
+# Bytecode de Python — generado al ejecutar la skill de lint (.claude/skills/lint/)
+__pycache__/
+*.pyc
+
 # Obsidian: configuración local, no forma parte del wiki
 .obsidian/workspace*
 .obsidian/cache

@@ -1770,3 +1770,37 @@ agujero mudo:
 
 **El registro continúa con normalidad desde esta entrada.** No se cambia ningún contenido de las
 rondas afectadas — esto es una nota de proceso, no una revisión de sustancia.
+
+## [2026-07-27] investigación | Hueco de numeración D-34–D-44 — sin rastro localizable
+
+**Estado:** REGISTRO — no es una decisión, es la constancia de una investigación de integridad.
+
+**Motivo.** El informe comparativo del 2026-07-19 señaló D-34 a D-44 (11 números) como ausentes de
+`decisiones.md`/`log.md` y "no verificable". Se investiga si hubo renumeración, squash, o edición de
+`decisiones.md` fuera del protocolo append-only (§7).
+
+**Qué se hizo.**
+1. `git log --all -S"D-N" -- .` y `-G` para cada número D-34…D-44, sobre todo el historial (única
+   rama, `master`) — **cero coincidencias**, en ningún commit, en ningún fichero, en ningún momento.
+2. Revisión de reflog y `git fsck --unreachable`: no hay commits huérfanos ni ramas perdidas. El
+   único objeto colgante es un tag antiguo (`v1.0-fuentes`) que apunta a un commit ya alcanzable
+   (`f2f8bff`) — sin relación con el hueco.
+3. Lectura completa de `log.md` buscando mención textual de pasada (no solo entrada formal) — no
+   aparecen en ninguna narrativa.
+
+**Lo que sí se pudo acotar.** El numerador salta dentro del **mismo día**, 2026-07-12:
+- **D-33** se ratifica en el commit `f2f8bff` (12:00:06 +0200) — *"Herramientas versionadas +
+  gobernanza; rechazo de initial_prompt v2"*.
+- **D-45** aparece por primera vez ~10,5 horas después, en el commit `b2515ba` (22:44:32 +0200) —
+  *"Cambio de herramienta de transcripción: Whisper descartado (D-45..D-49)"*, con el propio mensaje
+  del commit ya usando la numeración `D-45..D-49` sin mencionar los números intermedios.
+- Entre ambos commits no hay ningún otro commit que toque `decisiones.md` o `log.md`.
+
+**Conclusión — sin inventar explicación (RD-4).** No hay evidencia localizable en el repositorio de
+que D-34–D-44 existieran nunca en forma escrita: ni se ven creados y luego borrados, ni renumerados,
+ni squasheados. El historial de commits es consistente con append-only en todo momento — no hay
+violación detectable del protocolo (§7). La hipótesis más simple —que esos 11 números se reservaron
+o discutieron fuera del repositorio (conversación, borrador no comiteado) durante esas ~10,5 horas
+del 12 de julio y nunca llegaron a escribirse aquí— **no se puede confirmar ni descartar con lo que
+hay**. Se deja así, como `[HUECO]`: un hueco de numeración real, acotado a una ventana de un mismo
+día, sin relleno plausible.
